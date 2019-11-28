@@ -2,7 +2,7 @@
 
 ## Qc.WestcnSdk
 
-`Qc.WestcnSdk` 是一个基于 `.NET Standard 2.0` 构建，对西部数码接口平台的常用接口进行了封装。
+`Qc.WestcnSdk` 是一个基于 `.NET Standard 2.0` 构建，对西部数码代理平台的常用接口进行了封装。
 
 
 ### 使用 WestcnSdk
@@ -19,8 +19,8 @@
 
 #### 二.添加配置
 
-> 如需实现自定义存储 AccessToken，动态获取应用配置，可自行实现接口 `IWestcnSdkHook`  
-> 默认提供 `DefaultWestcnSdkHook`，存储 AccessToken 等信息到指定目录(默认./AppData)
+> 如需实现自定义动态获取应用配置，可自行实现接口 `IWestcnSdkHook`  
+> 默认提供 `DefaultWestcnSdkHook`，从 `appsettings.json` 获取配置信息
 
 ```cs
 using WestcnSdk;
@@ -29,8 +29,10 @@ public void ConfigureServices(IServiceCollection services)
   //...
   services.AddWestcnSdk<WestcnSdk.DefaultWestcnSdkHook>(opt =>
   {
-      opt.ApiKey = "Api Key";
-      opt.SecretKey = "Secret Key";
+       opt.ApiUrl = "http://api.west263.com/";
+       opt.DomainApiUrl= "https://api.west.cn/";
+       opt.UserId = "test";
+       opt.ApiPwd = "test123";
   });
   //...
 }
