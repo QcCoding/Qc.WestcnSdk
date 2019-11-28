@@ -1,0 +1,72 @@
+﻿@page
+@model Qc.WestcnSdk.Sample.Pages.Domain.ManagerModel
+@{
+    ViewData["Title"] = "域名管理";
+    var toDay = DateTime.Now.Date;
+}
+<a asp-page="/Index">首页 </a>
+<hr />
+<h1>域名管理</h1>
+
+@{
+    if (Model.DomainList == null)
+    {
+        return;
+    }
+}
+<table border="1" cellspacing="0" cellpadding="4" style="text-align:center">
+    <thead>
+        <tr>
+            <th>域名</th>
+            <th>注册时间</th>
+            <th>过期时间</th>
+            <th>主DNS</th>
+            <th>辅DNS</th>
+            <th>注册年限</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model.DomainList.Items.Count > 0)
+            {
+                foreach (var item in Model.DomainList.Items)
+                {
+                    bool criticalItem = item.ExpDate.AddDays(-30) < toDay;
+                    <tr>
+                        <td>@(item.Domain)</td>
+                        <td>@(item.RegDate)</td>
+                        <td style="@(criticalItem?"color:red":"color:green")">@(item.ExpDate)</td>
+                        <td>@(item.DNS1)</td>
+                        <td>@(item.DNS2)</td>
+                        <td>@(item.Year)年</td>
+                        <td><a asp-page="/Domain/AnalysisList" asp-route-domain="@(item.Domain)">查看解析记录</a></td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8">无记录...</td>
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="7">
+                当前第&nbsp;@(Model.DomainList.PageNo)&nbsp;页、&nbsp;共@(Model.DomainList.TotalPage)页
+                @{
+                    if (Model.DomainList.PageNo > 1)
+                    {
+                        <a asp-route-nowpage="@(Model.DomainList.PageNo-1)">上一页</a>
+                    }
+                    if (Model.DomainList.PageNo < Model.DomainList.TotalPage)
+                    {
+                        <a asp-route-nowpage="@(Model.DomainList.PageNo+1)">下一页</a>
+                    }
+                }
+            </td>
+        </tr>
+    </tfoot>
+</table>

@@ -1,0 +1,75 @@
+﻿@page
+@model Qc.WestcnSdk.Sample.Pages.Domain.AnalysisListModel
+@{
+    ViewData["Title"] = "解析列表";
+}
+
+<a asp-page="/Index">首页 </a>&nbsp;|&nbsp;<a asp-page="/Domain/Manager">域名列表</a>
+<hr />
+<h1>@(Request.Query["domain"]) - 解析列表</h1>
+
+@{
+    if (Model.AnalysisList == null)
+    {
+        return;
+    }
+}
+<table border="1" cellspacing="0" cellpadding="4" style="text-align:center">
+    <thead>
+        <tr>
+            <th>记录ID</th>
+            <th>解析类型</th>
+            <th>主机名称</th>
+            <th>解析值</th>
+            <th>优先级</th>
+            <th>解析生效时间</th>
+            <th>线路</th>
+            <th>已暂停</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model.AnalysisList.Items.Count > 0)
+            {
+                foreach (var item in Model.AnalysisList.Items)
+                {
+                    <tr>
+                        <td>@(item.Id)</td>
+                        <td>@(item.Type)</td>
+                        <td>@(item.Item)</td>
+                        <td>@(item.Value)</td>
+                        <td>@(item.Level)</td>
+                        <td>@(item.TTL)秒</td>
+                        <td>@(item.LineInfo)</td>
+                        <td>@(item.Pause)</td>
+                        <td></td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="9">无记录...</td>
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="9">
+                当前第&nbsp;@(Model.AnalysisList.PageNo)&nbsp;页、&nbsp;共@(Model.AnalysisList.PageCount)页
+                @{
+                    if (Model.AnalysisList.PageNo > 1)
+                    {
+                        <a asp-route-nowpage="@(Model.AnalysisList.PageNo-1)">上一页</a>
+                    }
+                    if (Model.AnalysisList.PageNo < Model.AnalysisList.PageCount)
+                    {
+                        <a asp-route-nowpage="@(Model.AnalysisList.PageNo+1)">下一页</a>
+                    }
+                }
+            </td>
+        </tr>
+    </tfoot>
+</table>

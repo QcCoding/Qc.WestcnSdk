@@ -1,0 +1,81 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "测试";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] 西部数码接口 Sdk示例</title>
+</head>
+<body>
+    <div class="container">
+        <fieldset>
+            <legend>西部数码接口 Sdk 域名业务接口列表</legend>
+            <div>
+                <fieldset>
+                    <legend>二、获取账户余额、域名价格</legend>
+                    <ul>
+                        <li>2.1、获取账户可用余额</li>
+                        <li>2.2、 获取域名价格</li>
+                    </ul>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset>
+                    <legend><a asp-page="/Domain/Manager">三、域名管理</a></legend>
+                    <ul>
+                        <li>3.1、域名查询</li>
+                        <li>3.2、域名续费</li>
+                        <li>3.3、获取域名列表&emsp;<b style="color:green">√已实现</b></li>
+                        <li>3.4、获取域名管理密码</li>
+                        <li>3.5、修改域名管理密码</li>
+                        <li>3.6、修改域名DNS</li>
+                        <li>3.7、添加域名解析</li>
+                        <li>3.8、修改域名解析&emsp;<b style="color:green">√已实现</b></li>
+                        <li>3.9、删除域名解析</li>
+                        <li>3.10、获取域名解析记录&emsp;<b style="color:green">√已实现</b></li>
+                        <li>3.11、获取域名证书</li>
+                        <li>3.12、设置域名锁定状态</li>
+                        <li>3.13、获取whois信息</li>
+                        <li>3.14、获取域名续费价格</li>
+                    </ul>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset>
+                    <legend>四、域名模板及注册</legend>
+                    <ul>
+                        <li>4.1、创建模板</li>
+                        <li>4.2、修改模板</li>
+                        <li>4.3、删除模板</li>
+                        <li>4.4、批量获取模板列表</li>
+                        <li>4.5、获取模板信息</li>
+                        <li>4.6、注册域名</li>
+                        <li>4.7、修改域名信息</li>
+                        <li>4.8、获取域名信息</li>
+                        <li>4.9、获取实名token</li>
+                        <li>4.10、上传域名实名资料</li>
+                        <li>4.11、域名模板过户</li>
+                        <li>4.12、查询域名过户状态</li>
+                    </ul>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset>
+                    <legend>五、域名转入</legend>
+                    <ul>
+                        <li>5.1、 提交域名转入</li>
+                        <li>5.2、转移验证</li>
+                        <li>5.3、 获取列表</li>
+                        <li>5.4、 撤消转入</li>
+                        <li>5.5、 刷新状态</li>
+                    </ul>
+                </fieldset>
+            </div>
+        </fieldset>
+    </div>
+</body>
+</html>
